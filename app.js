@@ -36,9 +36,8 @@ function btn_hold() {
     if(current === 0 && winner !== -1) return;
     scores[turn] += current;
     document.getElementById('score-' + turn).textContent = scores[turn];
-    current = 0;
-    document.getElementById('current-' + turn).textContent = current;
-    if(scores[turn] >= 100 && winner === -1) {
+    
+    if(scores[turn] >= 100) {
         winner = turn;
         document.getElementById('name-' + turn).textContent = 'Winner!';
     }
