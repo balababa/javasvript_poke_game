@@ -7,8 +7,12 @@ let scores = [0, 0];
 let current = 0;
 let turn = 0;
 let winner = -1;
-let activeClass1 = document.querySelector('.player-0-panel').classList;
-let activeClass2 = document.querySelector('.player-1-panel').classList;
+
+function nextPlayer() {
+    document.querySelector('.player-0-panel').classList.toggle('active');
+    document.querySelector('.player-1-panel').classList.toggle('active');
+    turn = (turn === 0)?1:0;
+}
 
 function btn_roll() {
     if(winner !== -1) return;
@@ -21,18 +25,13 @@ function btn_roll() {
 
     if(point === 1) {
         current = 0;
-        
         document.querySelector('.dice').style.display = 'none';
     } else {
         current += point;  
     }
     document.getElementById('current-' + turn).textContent = current;
-    if(point ===1){
-        activeClass1.toggle('active');
-        activeClass2.toggle('active');
-        turn = (turn === 0)?1:0;
-        
-    }
+    if(point ===1)
+        nextPlayer();
 }
 
 function btn_hold() {
@@ -45,11 +44,7 @@ function btn_hold() {
         winner = turn;
         document.getElementById('name-' + turn).textContent = 'Winner!';
     }
-    activeClass1.toggle('active');
-    activeClass2.toggle('active');
-    turn = (turn === 0)?1:0;
-    
-    
+    nextPlayer();
 }
 
 function btn_new() {
