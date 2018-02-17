@@ -6,6 +6,7 @@ let turn = 0;
 let winner = -1;
 
 function nextPlayer() {
+    current = 0;
     document.querySelector('.player-0-panel').classList.toggle('active');
     document.querySelector('.player-1-panel').classList.toggle('active');
     document.getElementById('current-0').textContent = 0;
@@ -33,18 +34,25 @@ function btn_roll() {
 }
 
 function btn_hold() {
-    if(current === 0 && winner !== -1) return;
+    if(current === 0 || winner !== -1) return;
     scores[turn] += current;
     document.getElementById('score-' + turn).textContent = scores[turn];
     
-    if(scores[turn] >= 100) {
+    if(scores[turn] >= 100 ) {
         winner = turn;
         document.getElementById('name-' + turn).textContent = 'Winner!';
+        document.querySelector('.dice').style.display = 'none';
+        document.querySelector('.player-' + turn + '-panel').classList.add('winner');
+        document.querySelector('.player-' + turn + '-panel').classList.remove('active');
+        
+        
+    } else {
+        nextPlayer();
     }
-    nextPlayer();
 }
 
 function btn_new() {
+      
     document.querySelector('.player-1-panel').classList.remove('active');
     document.querySelector('.player-0-panel').classList.add('active');
     
@@ -56,9 +64,10 @@ function btn_new() {
     scores = [0, 0];
     
     
-    for(let i = 0; i < 2; i++){
-    document.getElementById('current-' + i).textContent = 0;
-    document.getElementById('score-' + i).textContent = 0;
+    for (let i = 0; i < 2; i ++) {
+        document.querySelector('.player-' + i + '-panel').classList.remove('winner');    
+        document.getElementById('current-' + i).textContent = 0;
+        document.getElementById('score-' + i).textContent = 0;
     }
     document.querySelector('.dice').style.display = 'none';
 }
