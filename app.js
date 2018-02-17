@@ -1,6 +1,3 @@
-/*
-    
-*/
 document.querySelector('.dice').style.display = 'none';
 
 let scores = [0, 0];
