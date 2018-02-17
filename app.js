@@ -11,7 +11,7 @@ let winner = -1;
 function btn_roll() {
     if(winner !== -1) return;
 
-    let point = Math.floor(Math.random() * 6) +1;
+    let point = Math.floor(Math .random() * 6) +1;
     let diceDom = document.querySelector('.dice');
 
     diceDom.src = 'dice-' + point + '.png';
@@ -23,8 +23,13 @@ function btn_roll() {
         current += point;  
     }
     document.querySelector('#current-' + turn).textContent = current;
-    if(point ===1)
+    if(point ===1){
+        console.log(turn);
+        document.querySelector('.player-' + turn +'-panel').classList.remove('active');
         turn = (turn === 0)?1:0;
+        document.querySelector('.player-' + turn +'-panel').classList.add('active');
+        
+    }
 }
 
 function btn_hold() {
@@ -37,12 +42,15 @@ function btn_hold() {
         winner = turn;
         document.querySelector('#name-' + turn).textContent = 'Winner!';
     }
+    document.querySelector('.player-' + turn +'-panel').classList.remove('active');
     turn = (turn === 0)?1:0;
+    document.querySelector('.player-' + turn +'-panel').classList.add('active');
     
 }
 
 function btn_new() {
-    
+    document.querySelector('.player-1-panel').classList.remove('active');
+    document.querySelector('.player-0-panel').classList.add('active');
     
     document.querySelector('#name-0').textContent = 'PLAYER 1';
     document.querySelector('#name-1').textContent = 'PLAYER 2';
@@ -50,6 +58,8 @@ function btn_new() {
     turn = 0;
     current = 0;
     scores = [0, 0];
+    
+    
     for(let i = 0; i < 2; i++){
     document.querySelector('#current-' + i).textContent = 0;
     document.querySelector('#score-' + i).textContent = 0;
