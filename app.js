@@ -8,6 +8,8 @@ let winner = -1;
 function nextPlayer() {
     document.querySelector('.player-0-panel').classList.toggle('active');
     document.querySelector('.player-1-panel').classList.toggle('active');
+    document.getElementById('current-0').textContent = 0;
+    document.getElementById('current-1').textContent = 0;
     turn = (turn === 0)?1:0;
 }
 
@@ -23,12 +25,11 @@ function btn_roll() {
     if(point === 1) {
         current = 0;
         document.querySelector('.dice').style.display = 'none';
+        nextPlayer();
     } else {
         current += point;  
+        document.getElementById('current-' + turn).textContent = current;
     }
-    document.getElementById('current-' + turn).textContent = current;
-    if(point ===1)
-        nextPlayer();
 }
 
 function btn_hold() {
