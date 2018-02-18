@@ -39,7 +39,7 @@ function btn_hold() {
     scores[turn] += current;
     document.getElementById('score-' + turn).textContent = scores[turn];
     
-    if(scores[turn] >= 10 ) {
+    if(scores[turn] >= 100 ) {
         winner = turn;
         document.getElementById('name-' + turn).textContent = 'Winner!';
         document.querySelector('.dice').style.display = 'none';
