@@ -4,7 +4,7 @@ init();
 
 document.querySelector('.btn-roll').addEventListener('click', btn_roll);
 document.querySelector('.btn-hold').addEventListener('click', btn_hold);
-document.querySelector('.btn-new').addEventListener('click', btn_new);
+document.querySelector('.btn-new').addEventListener('click', init);
 
 function nextPlayer() {
     current = 0;
@@ -50,10 +50,6 @@ function btn_hold() {
     } else {
         nextPlayer();
     }
-}
-
-function btn_new() {
-    init();
 }
 
 function init () {
